@@ -1,0 +1,64 @@
+<!--  割り勘が簡単にできるアプリ×ネット通販を電子決済機能でできるようにをHTML1ファイルでつくって by OpenAI API -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>割り勘とネット通販</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        label, button {
+            display: block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h2>割り勘計算</h2>
+        <label for="totalAmount">合計金額:</label>
+        <input type="number" id="totalAmount" placeholder="金額を入力">
+
+        <label for="numberOfPeople">人数:</label>
+        <input type="number" id="numberOfPeople" placeholder="人数を入力">
+
+        <button onclick="calculateSplit()">計算する</button>
+        <p id="result"></p>
+    </div>
+
+    <div class="section">
+        <h2>ネット通販</h2>
+        <label for="product">商品名:</label>
+        <input type="text" id="product" placeholder="商品名を入力">
+
+        <button onclick="buyProduct()">購入する</button>
+    </div>
+
+    <script>
+        function calculateSplit() {
+            const totalAmount = parseFloat(document.getElementById('totalAmount').value);
+            const numberOfPeople = parseInt(document.getElementById('numberOfPeople').value);
+
+            if (isNaN(totalAmount) || isNaN(numberOfPeople) || numberOfPeople <= 0) {
+                document.getElementById('result').textContent = '正しい金額と人数を入力してください。';
+                return;
+            }
+
+            const splitAmount = totalAmount / numberOfPeople;
+            document.getElementById('result').textContent = '一人当たり: ¥' + splitAmount.toFixed(2);
+        }
+
+        function buyProduct() {
+            const product = document.getElementById('product').value;
+            alert(`${product}を購入しました!`);
+        }
+    </script>
+</body>
+</html>
